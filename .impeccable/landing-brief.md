@@ -24,8 +24,6 @@ All identity, work titles, metrics, and links are placeholders. No photographs, 
 
 **STORY:** The visitor first meets an identity and point of view, then moves through selected placeholder work, a concise practice statement, and one uncomplicated invitation to connect.
 
-**FIRST VIEWPORT:** A translucent, compact navigation strip sits above a large two-line introduction. At right, an abstract orbital placeholder panel creates a single visual focal point; a small availability line and a single “View selected work” action anchor the lower edge.
-
 **FORM:** Quiet gallery / contemporary industrial-design catalogue; seed key `2b9c3fbd`. Signature interaction: the focal placeholder and project panels respond to pointer position with restrained depth, while content is fully visible without motion.
 
 **FINISH:** unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
