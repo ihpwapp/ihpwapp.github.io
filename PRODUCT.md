@@ -28,14 +28,14 @@ Visitors arrive on desktop or mobile from a shared link, search result, résumé
 
 ## Capabilities and Constraints
 
-- A single static landing page with responsive navigation, selected-work previews, and contact links.
+- A single static landing page with responsive navigation, a comprehensive about section drawn from the resume, selected-work previews, and contact links.
 - No external runtime dependencies or backend services.
-- Placeholder identity, project, and contact information must be obvious and easy to replace.
+- The resume is published at the repository root as a downloadable PDF, so any claim on the page must stay traceable to that file.
 - GitHub Pages-compatible paths and assets only.
 
 ## Evidence on Hand
 
-No approved bio, project case studies, photography, testimonials, or contact endpoints have been supplied. The initial build must not present invented achievements as fact.
+A supplied `Resume.pdf` is the approved source for all identity, education, experience, skills, and certificate claims. The "About me" section is a restatement of that document, not invented content. Project case studies, photography, and testimonials remain unapproved; the selected-work entries stay high level until the owner supplies detail. Contact endpoints are the addresses already published in the resume.
 
 ## Product Principles
 
