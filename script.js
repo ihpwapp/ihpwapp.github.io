@@ -31,4 +31,41 @@ if (object) {
   }
 }
 
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+const countUp = (el) => {
+  const parts = el.textContent.trim().match(/^([^\d]*)([\d.]+)([^\d.]*)$/);
+  if (!parts) return;
+
+  const [, prefix, digits, suffix] = parts;
+  const decimals = (digits.split('.')[1] || '').length;
+  const target = parseFloat(digits);
+  if (!Number.isFinite(target)) return;
+
+  const duration = 5000;
+  const start = performance.now();
+
+  const frame = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    el.textContent = prefix + (target * easeOutCubic(progress)).toFixed(decimals) + suffix;
+    if (progress < 1) requestAnimationFrame(frame);
+  };
+
+  requestAnimationFrame(frame);
+};
+
+const statValues = document.querySelectorAll('.stat-value');
+
+if (statValues.length && !reduceMotion) {
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      countUp(entry.target);
+      statObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.4 });
+
+  statValues.forEach((el) => statObserver.observe(el));
+}
+
 document.querySelector('#year').textContent = new Date().getFullYear();
