@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A feature-engineering study asking whether metadata known before release can predict if a film will pay for itself." />
+    <meta name="theme-color" content="#f3f6ea" />
+    <link rel="canonical" href="https://ihpwapp.github.io/work/movie-analysis.html" />
+    <title>Movie Analysis — Hariz Imzan</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23101f1e'/><text x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='27' font-weight='700' fill='%23f3f6ea' text-anchor='middle'>HI</text></svg>" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Hariz Imzan" />
+    <meta property="og:title" content="Movie Analysis" />
+    <meta property="og:description" content="A feature-engineering study asking whether metadata known before release can predict if a film will pay for itself." />
+    <meta property="og:url" content="https://ihpwapp.github.io/work/movie-analysis.html" />
+    <meta property="og:image" content="https://ihpwapp.github.io/images/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Movie Analysis" />
+    <meta name="twitter:description" content="A feature-engineering study asking whether metadata known before release can predict if a film will pay for itself." />
+    <meta name="twitter:image" content="https://ihpwapp.github.io/images/og.jpg" />
+
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <!-- DRAFT case study — copy sourced from the TMDB-movie-analysis repo notes; awaiting owner review. -->
+    <a class="skip-link" href="#main">Skip to case study</a>
+    <header class="site-header" id="top">
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="monogram" href="../" aria-label="Hariz Imzan, home">HI</a>
+        <div class="nav-links">
+          <a href="../#work">Work</a>
+          <a href="../#about-me">About</a>
+          <a href="../#contact">Contact</a>
+        </div>
+        <a class="nav-status" href="../#contact"><span></span> Available</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="case-shell case-header">
+        <a class="case-back" href="../#work">All selected work <svg aria-hidden="true" viewBox="0 0 18 18"><path d="M3 9h11M10 4l5 5-5 5" /></svg></a>
+        <p class="case-kicker">Case study · Machine learning</p>
+        <h1 class="case-title">Movie Analysis</h1>
+        <p class="case-lede">Can metadata known before release predict whether a film pays for itself? A feature-engineering study built on the TMDB ingestion pipeline.</p>
+        <dl class="case-meta">
+          <div><dt>Stack</dt><dd>Python · pandas · scikit-learn · XGBoost</dd></div>
+          <div><dt>Data</dt><dd>~15k movies · ~530k people</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+          <div><dt>Status</dt><dd>Ongoing</dd></div>
+        </dl>
+        <div class="case-hero-art" aria-hidden="true">
+          <div class="project-art art-signal"><i></i><b></b><span>Personal Project</span></div>
+        </div>
+      </div>
+
+      <div class="case-shell">
+        <section class="case-section" data-reveal>
+          <h2>The question</h2>
+          <div class="case-prose">
+            <p>Three questions drive the work: is a movie going to succeed commercially, which features correlate most with that success, and how much can metadata alone predict revenue?</p>
+            <p>Success is defined plainly — a film returns <strong>2.5× its production budget</strong>. The decision this supports is a greenlight call, which means the people reading it are studios, producers, and actors.</p>
+          </div>
+        </section>
+
+        <section class="case-section" data-reveal>
+          <h2>Data</h2>
+          <div class="case-prose">
+            <ul>
+              <li>Roughly 15,000 movies spanning 1925–2027, plus about 530,000 people, pulled from the TMDB pipeline.</li>
+              <li>Revenue and budget are heavily skewed, so targets get a <code>log1p</code> transform before modelling.</li>
+              <li>Only features known at decision time are allowed into the primary feature set: budget, release date, genre, production company, cast, director, keywords.</li>
+            </ul>
+            <p>The limitations are written down rather than hidden: marketing spend is invisible in this data, older films carry unadjusted inflation, indie breakouts are rare events no model will catch, and word-of-mouth moves opening weekends.</p>
+          </div>
+        </section>
+
+        <section class="case-section" data-reveal>
+          <h2>Feature design</h2>
+          <div class="case-prose">
+            <p>Modelling starts from a deliberate baseline — budget, runtime, release year and month, genre, country, language — then compares candidate feature families against it one at a time:</p>
+            <ul>
+              <li><strong>Release timing</strong> — quarter, day of week, calendar position.</li>
+              <li><strong>Genre shape</strong> — primary genre, genre count, individual genre flags.</li>
+              <li><strong>Production</strong> — company and country counts, primary studio and country.</li>
+              <li><strong>Director &amp; cast history</strong> — prior film count, previous average revenue, budget, and ROI carried forward from the pipeline's own tables.</li>
+              <li><strong>Crew weight, keywords, franchise</strong> — crew size; flags like superhero, sequel, remake, based-on-novel; collection membership and franchise track record.</li>
+              <li><strong>Certification &amp; engagement</strong> — rating bands, plus popularity and vote signals that only exist after release, kept separate from decision-time features.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="case-section" data-reveal>
+          <h2>Outcome</h2>
+          <div class="case-prose">
+            <ul>
+              <li>A feature catalogue expressed in code and SQL — <code>feature_engineering.py</code>, <code>extract_movie_features.sql</code>, and <code>EDA.sql</code> — with the extracted matrix checked into the repo as <code>extract_movie_features.csv</code>.</li>
+              <li>A clean separation between features you can know on greenlight day and signals that only arrive after release, which keeps the prediction honest.</li>
+              <li>The work is ongoing: candidate families are still being compared against the baseline before any accuracy claim is worth printing here.</li>
+            </ul>
+            <div class="case-links">
+              <a class="text-link" href="https://github.com/ihpwapp/TMDB-movie-analysis" target="_blank" rel="noreferrer">View repository <svg aria-hidden="true" viewBox="0 0 18 18"><path d="M3 9h11M10 4l5 5-5 5" /></svg></a>
+              <a class="text-link" href="tmdb-ingestion.html">The pipeline behind this data <svg aria-hidden="true" viewBox="0 0 18 18"><path d="M3 9h11M10 4l5 5-5 5" /></svg></a>
+            </div>
+          </div>
+        </section>
+
+        <div class="case-next">
+          <a class="case-next-link" href="audio-deepfake.html"><p>Next project</p><strong>Audio Deepfake Detection</strong></a>
+          <a class="text-link" href="../#work">All selected work <svg aria-hidden="true" viewBox="0 0 18 18"><path d="M3 9h11M10 4l5 5-5 5" /></svg></a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Hariz Imzan</span>
+      <div><a href="https://github.com/ihpwapp" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/hariz-imzan" target="_blank" rel="noreferrer">LinkedIn</a><a href="#top">Back to top</a></div>
+    </footer>
+    <script src="../script.js"></script>
+  </body>
+</html>
