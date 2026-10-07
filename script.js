@@ -4,44 +4,23 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
 }));
 
 const object = document.querySelector('#hero-object');
-const flipToggle = document.querySelector('#flip-toggle');
-const flipClose = document.querySelector('#flip-close');
-const flipFront = document.querySelector('.flip-card-front');
 const flipBack = document.querySelector('#contact-back');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const isFlipped = () => object.classList.contains('is-flipped');
-
-const setFlipped = (flipped, returnFocus = true) => {
-  object.classList.toggle('is-flipped', flipped);
-  flipToggle.setAttribute('aria-expanded', String(flipped));
-
-  if (flipped) {
-    flipBack.inert = false;
-    flipBack.removeAttribute('aria-hidden');
-    flipFront.inert = true;
-    flipFront.setAttribute('aria-hidden', 'true');
-    const firstLink = flipBack.querySelector('a');
-    if (firstLink) firstLink.focus();
-  } else {
-    flipFront.inert = false;
-    flipFront.removeAttribute('aria-hidden');
-    flipBack.inert = true;
-    flipBack.setAttribute('aria-hidden', 'true');
-    if (returnFocus) flipToggle.focus();
-  }
-};
-
-if (object && flipToggle && flipClose && flipFront && flipBack) {
-  flipToggle.addEventListener('click', () => setFlipped(true));
-  flipClose.addEventListener('click', () => setFlipped(false));
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && isFlipped()) setFlipped(false);
+if (object) {
+  object.addEventListener('click', () => {
+    const flipped = object.classList.toggle('is-flipped');
+    object.setAttribute('aria-expanded', String(flipped));
+    object.setAttribute('aria-label', flipped ? 'Hide contact details' : 'Show contact details');
+    if (flipBack) flipBack.inert = !flipped;
   });
 
-  flipBack.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener('click', () => setFlipped(false, false));
+  object.addEventListener('keydown', (event) => {
+    if (event.target !== object) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      object.click();
+    }
   });
 
   if (!reduceMotion) {

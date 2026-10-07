@@ -68,17 +68,15 @@
           <a class="text-link hero-link" href="#work">View related work <svg aria-hidden="true" viewBox="0 0 18 18"><path d="M3 9h11M10 4l5 5-5 5" /></svg></a>
         </div>
         <div class="hero-object-wrap">
-          <div class="hero-object" id="hero-object">
-            <div class="flip-card-inner">
-              <div class="flip-card-face flip-card-front">
+          <button class="hero-object" id="hero-object" type="button" aria-expanded="false" aria-label="Show contact details">
+            <span class="flip-card-inner">
+              <span class="flip-card-face flip-card-front">
                 <img class="hero-image" src="images/new.jpg" alt="Portrait of Hariz Imzan" width="1067" height="1058" fetchpriority="high" />
                 <span class="object-caption"><span>Hariz Imzan</span><span>2026</span></span>
-                <button class="flip-toggle" id="flip-toggle" type="button" aria-expanded="false" aria-controls="contact-back" aria-label="Show contact details"></button>
-              </div>
-              <div class="flip-card-face flip-card-back" id="contact-back" inert aria-hidden="true">
-                <button class="flip-close" id="flip-close" type="button" aria-label="Hide contact details"></button>
+              </span>
+              <span class="flip-card-face flip-card-back" id="contact-back" inert aria-live="polite">
                 <span class="contact-flip-copy">
-                  <span class="contact-circle-cluster" role="group" aria-label="Contact links">
+                  <span class="contact-circle-cluster" aria-label="Contact links">
                     <a href="mailto:imzanhariz@gmail.com" aria-label="Email Hariz Imzan" title="Email" style="display: inline-flex; align-items: center; justify-content: center;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><!--!Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/></svg>
                     </a>
@@ -93,9 +91,9 @@
                     </a>
                   </span>
                 </span>
-              </div>
-            </div>
-          </div>
+              </span>
+            </span>
+          </button>
           <p class="placeholder-note">Click the card to reveal more.</p>
         </div>
       </section>
@@ -107,7 +105,7 @@
         </div>
 
         <div class="about-me-bio" data-reveal>
-          <p class="bio-lead">I build data systems end to end — from the API call and the schema, to the model, to the dashboard someone actually <em>trusts.</em></p>
+          <p class="bio-lead">Driven by a deep curiosity for how things work end to end from the initial setup to the final outcome people actually trust. I'm always looking to learn how each piece fits together and how to make it <em>better.</em></p>
           <div class="bio-body">
             <p>My background sits where data engineering meets machine learning. I studied Information Systems (Hons.) Intelligent Systems Engineering at Universiti Teknologi MARA, specialising in Intelligent System Engineering, and finished with a final-year project on detecting deepfake speech by extracting MFCC and spectrogram features across CNN and RNN architectures. A Diploma in Computer Science beforehand gave me the programming fundamentals — visual programming, interactive multimedia, and object-oriented design.</p>
             <p>In the field, I curated and labelled English audio datasets at TDCX, holding a 97% annotation accuracy rate against a 95% team KPI and working alongside QA to trace recurring ambiguity patterns back into the guidelines themselves. As a Data Analyst Intern at Lembaga Tabung Haji, I helped build Power BI dashboards and kept internal systems running during Operasi Haji Tanah Air. I'm most interested in the unglamorous parts: the schema that doesn't duplicate, the query that doesn't time out, the chart that answers the question someone actually asked.</p>
@@ -232,10 +230,11 @@
           <h2 id="work-title">Selected work</h2>
           <p>Three personal projects. Completed and Ongoing. Explore more <a class="section-link" href="https://github.com/ihpwapp" target="_blank" rel="noreferrer">here</a>.</p>
         </div>
+        <!-- project art = GitHub logo placeholder; swap for own imagery -->
         <div class="work-grid">
           <article class="project project-large project-signal" data-reveal>
             <a href="work/movie-analysis.html">
-              <div class="project-art art-signal" aria-hidden="true"><i></i><b></b><span>Personal Project</span></div>
+              <div class="project-art art-signal" aria-hidden="true"><svg class="art-logo" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path d="M280.5 426.5C214.5 418.5 168 371 168 309.5C168 284.5 177 257.5 192 239.5C185.5 223 186.5 188 194 173.5C214 171 241 181.5 257 196C276 190 296 187 320.5 187C345 187 365 190 383 195.5C398.5 181.5 426 171 446 173.5C453 187 454 222 447.5 239C463.5 258 472 283.5 472 309.5C472 371 425.5 417.5 358.5 426C375.5 437 387 461 387 488.5L387 540.5C387 555.5 399.5 564 414.5 558C505 523.5 576 433 576 321C576 179.5 461 64 319.5 64C178 64 64 179.5 64 321C64 432 134.5 524 229.5 558.5C243 563.5 256 554.5 256 541L256 501C249 504 240 506 232 506C199 506 179.5 488 165.5 454.5C160 441 154 433 142.5 431.5C136.5 431 134.5 428.5 134.5 425.5C134.5 419.5 144.5 415 154.5 415C169 415 181.5 424 194.5 442.5C204.5 457 215 463.5 227.5 463.5C240 463.5 248 459 259.5 447.5C268 439 274.5 431.5 280.5 426.5z"/></svg></div>
               <div class="project-meta"><div><h3>Movie Analysis</h3><p>Python · pandas · scikit-learn</p></div><span>Analysis</span></div>
             </a>
           </article>
@@ -243,13 +242,13 @@
           
           <article class="project project-tall project-index" data-reveal>
             <a href="work/tmdb-ingestion.html">
-              <div class="project-art art-index" aria-hidden="true"><span><br /></span><i>2026</i></div>
+              <div class="project-art art-index" aria-hidden="true"><svg class="art-logo" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path d="M280.5 426.5C214.5 418.5 168 371 168 309.5C168 284.5 177 257.5 192 239.5C185.5 223 186.5 188 194 173.5C214 171 241 181.5 257 196C276 190 296 187 320.5 187C345 187 365 190 383 195.5C398.5 181.5 426 171 446 173.5C453 187 454 222 447.5 239C463.5 258 472 283.5 472 309.5C472 371 425.5 417.5 358.5 426C375.5 437 387 461 387 488.5L387 540.5C387 555.5 399.5 564 414.5 558C505 523.5 576 433 576 321C576 179.5 461 64 319.5 64C178 64 64 179.5 64 321C64 432 134.5 524 229.5 558.5C243 563.5 256 554.5 256 541L256 501C249 504 240 506 232 506C199 506 179.5 488 165.5 454.5C160 441 154 433 142.5 431.5C136.5 431 134.5 428.5 134.5 425.5C134.5 419.5 144.5 415 154.5 415C169 415 181.5 424 194.5 442.5C204.5 457 215 463.5 227.5 463.5C240 463.5 248 459 259.5 447.5C268 439 274.5 431.5 280.5 426.5z"/></svg></div>
               <div class="project-meta"><div><h3>TMDB Ingestion Pipeline</h3><p>Python · PostgreSQL · ETL</p></div><span>Data</span></div>
             </a>
           </article>
           <article class="project project-wide project-lumen" data-reveal>
             <a href="work/audio-deepfake.html">
-              <div class="project-art art-lumen" aria-hidden="true"><div></div><span>ihpwapp</span></div>
+              <div class="project-art art-lumen" aria-hidden="true"><svg class="art-logo" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path d="M280.5 426.5C214.5 418.5 168 371 168 309.5C168 284.5 177 257.5 192 239.5C185.5 223 186.5 188 194 173.5C214 171 241 181.5 257 196C276 190 296 187 320.5 187C345 187 365 190 383 195.5C398.5 181.5 426 171 446 173.5C453 187 454 222 447.5 239C463.5 258 472 283.5 472 309.5C472 371 425.5 417.5 358.5 426C375.5 437 387 461 387 488.5L387 540.5C387 555.5 399.5 564 414.5 558C505 523.5 576 433 576 321C576 179.5 461 64 319.5 64C178 64 64 179.5 64 321C64 432 134.5 524 229.5 558.5C243 563.5 256 554.5 256 541L256 501C249 504 240 506 232 506C199 506 179.5 488 165.5 454.5C160 441 154 433 142.5 431.5C136.5 431 134.5 428.5 134.5 425.5C134.5 419.5 144.5 415 154.5 415C169 415 181.5 424 194.5 442.5C204.5 457 215 463.5 227.5 463.5C240 463.5 248 459 259.5 447.5C268 439 274.5 431.5 280.5 426.5z"/></svg></div>
               <div class="project-meta"><div><h3>Audio Deepfake Detection</h3><p>Python · Scikit-learn · Audio</p></div><span>Deep Learning</span></div>
             </a>
           </article>
